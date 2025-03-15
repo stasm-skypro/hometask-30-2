@@ -119,3 +119,53 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024  # max 2 MB
+
+
+# Настройка аутентификации (необходимо для того, чтобы пользователь после успешной регистрации автоматически
+# входил в систему)
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+]
+
+
+# Настройка логгеров
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {"format": "%(asctime)s - %(name)s - %(levelname)s: %(message)s"},
+    },
+    "handlers": {
+        "users_file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "users/logs/reports.log"),
+            "encoding": "utf-8",
+            "formatter": "verbose",
+        },
+        "materials_file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": os.path.join(BASE_DIR, "materials/logs/reports.log"),
+            "encoding": "utf-8",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "users": {
+            "handlers": ["users_file"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "materials": {
+            "handlers": ["materials_file"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+        "courses": {
+            "handlers": ["materials_file"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
+}
