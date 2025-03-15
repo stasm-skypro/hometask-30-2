@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
+from materials.models import Course, Lesson
+
 
 class UserManager(BaseUserManager):
     """
@@ -92,3 +94,63 @@ class User(AbstractUser):
     def get_user_name(self):
         """Метод для получения имени пользователя."""
         return self.username
+
+
+class Payment(models.Model):
+    """Класс оплаты. Модель 'Оплата'."""
+
+    PAYMENT_METHODS = [
+        ("cash", "Наличные"),
+        ("transfer", "Перевод на счет"),
+    ]
+
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="Пользователь",
+        related_name="payments"
+    )
+
+    date = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Дата оплаты"
+    )
+
+    course = models.ForeignKey(
+        Course,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Оплаченный курс"
+    )
+
+    lesson = models.ForeignKey(
+        Lesson,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        verbose_name="Оплаченный урок"
+    )
+
+    amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Сумма оплаты",
+        help_text="Укажите сумму оплаты"
+    )
+
+    payment_method = models.CharField(
+        max_length=10,
+        choices=PAYMENT_METHODS,
+        verbose_name="Способ оплаты"
+    )
+
+    class Meta:
+        """Мета-класс модели оплаты."""
+
+        verbose_name = "Оплата"
+        verbose_name_plural = "Оплаты"
+
+    def __str__(self):
+        """Метод для отображения объекта оплаты в админке."""
+        return f"{self.user.email} - {self.amount} руб."

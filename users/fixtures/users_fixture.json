@@ -38,5 +38,19 @@
       "is_staff": false,
       "is_active": true
     }
+  },
+  {
+    "model": "users.user",
+    "pk": 5,
+    "fields": {
+      "username": "nikolaystarikov",
+      "email": "nikolay.starikov@example.com",
+      "phone": "+7987654321",
+      "city": "Moscow",
+      "password": "pbkdf2_sha256$160011$def789$hashedpassword",
+      "is_staff": false,
+      "is_active": true
+    }
   }
+
 ]
