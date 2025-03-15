@@ -104,6 +104,14 @@ class Payment(models.Model):
         ("transfer", "Перевод на счет"),
     ]
 
+    """
+    Поля user, course, lesson связаны с соответствующими моделями через ForeignKey.
+    Поле date автоматически заполняется при создании платежа.
+    Поле amount позволяет учитывать денежные суммы.
+    Поле payment_method ограничено двумя вариантами: cash и transfer.
+    Поля course и lesson могут быть NULL, чтобы разрешить оплату либо курса, либо урока.
+    """
+
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
