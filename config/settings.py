@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party apps
     "rest_framework",
+    # Local apps
+    "users",
+    "materials",
 ]
 
 MIDDLEWARE = [
@@ -126,6 +129,10 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024  # max 2 MB
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
+
+
+# Custom user model
+AUTH_USER_MODEL = "users.User"
 
 
 # Настройка логгеров
