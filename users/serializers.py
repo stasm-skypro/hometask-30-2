@@ -23,13 +23,14 @@ class UserSerializer(serializers.ModelSerializer):
     """Сериализатор для модели User."""
 
     # payments = PaymentSerializer(many=True, read_only=True, source="payments")
-    payments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    # payments = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    payments = PaymentSerializer(many=True, read_only=True)
 
 
     class Meta:
         model = User
         fields = [
-            "id", "username", "email", "first_name", "last_name", "is_staff", "is_active", "date_joined", "payments"
+            "id", "username", "email", "is_staff", "is_active", "date_joined", "payments"
         ]
 
         # Дополнительно определяем поля, которые нельзя изменять

@@ -59,3 +59,10 @@
 
 9. Сортировка по дате и поиск по названию курса
 ![sort_by_date_and_search_by_course](/media/readme/sort_by_date_and_search_by_course.png)
+
+
+### Задача 5
+
+Дополнительно для профиля пользователя реализован вывод истории платежей.
+
+![payment_history](/media/readme/payment_history.png)
