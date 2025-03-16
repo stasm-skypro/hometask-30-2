@@ -1,6 +1,10 @@
-from rest_framework import viewsets, generics
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, generics, filters
+
+from users.models import Payment
+from .filters import PaymentFilter
 from .models import Course, Lesson
-from .serializers import CourseSerializer, LessonSerializer
+from .serializers import CourseSerializer, LessonSerializer, PaymentSerializer
 import logging
 
 
@@ -106,3 +110,14 @@ class LessonDestroyAPIView(generics.DestroyAPIView):
         lesson = self.get_object()
         logger.warning("Урок %s удалён пользователем %s", lesson.name, request.user)
         return super().destroy(request, *args, **kwargs)
+
+
+class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
+    """Эндпоинт для просмотра платежей с фильтрацией."""
+
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_class = PaymentFilter
+    ordering_fields = ["date"]
+    ordering = ["-date"]  # По умолчанию сортируем по дате (от новых к старым)

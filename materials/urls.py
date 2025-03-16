@@ -7,6 +7,7 @@ from .views import (
     LessonRetrieveAPIView,
     LessonUpdateAPIView,
     LessonDestroyAPIView,
+    PaymentViewSet,
 )
 from django.urls import path
 
@@ -14,10 +15,13 @@ from django.urls import path
 app_name = MaterialsConfig.name
 
 
+# URL-ы для Вьюсетов
 router = routers.DefaultRouter()
-router.register(r"course", CourseViewSet, basename="course")  # URL-ы для Вьюсета
+router.register(r"course", CourseViewSet, basename="course")
+router.register(r"payment", PaymentViewSet, basename="payment")
 
-urlpatterns = [  # URL-ы для APIView
+# URL-ы для APIView
+urlpatterns = [
     path("lesson/create/", LessonCreateAPIView.as_view(), name="lesson-create"),
     path("lesson/list/", LessonListAPIView.as_view(), name="lesson-list"),
     path("lesson/list/<int:pk>/", LessonRetrieveAPIView.as_view(), name="lesson-detail"),
