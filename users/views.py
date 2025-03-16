@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import User
-from .serializers import UserSerializer
+from .models import User, Payment
+from .serializers import UserSerializer, PaymentSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -8,3 +8,10 @@ class UserViewSet(viewsets.ModelViewSet):
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class PaymentViewSet(viewsets.ModelViewSet):
+    """Класс для представления платежей в API."""
+
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer

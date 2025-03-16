@@ -2,9 +2,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, generics, filters
 
 from users.models import Payment
+from users.serializers import PaymentSerializer
 from .filters import PaymentFilter
 from .models import Course, Lesson
-from .serializers import CourseSerializer, LessonSerializer, PaymentSerializer
+from .serializers import CourseSerializer, LessonSerializer
 import logging
 
 
@@ -117,7 +118,8 @@ class PaymentViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
-    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
     filterset_class = PaymentFilter
     ordering_fields = ["date"]
     ordering = ["-date"]  # По умолчанию сортируем по дате (от новых к старым)
+    search_fields = ["user__username", "course__name", "lesson__name"]

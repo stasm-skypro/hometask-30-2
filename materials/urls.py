@@ -7,7 +7,6 @@ from .views import (
     LessonRetrieveAPIView,
     LessonUpdateAPIView,
     LessonDestroyAPIView,
-    PaymentViewSet,
 )
 from django.urls import path
 
@@ -18,7 +17,6 @@ app_name = MaterialsConfig.name
 # URL-ы для Вьюсетов
 router = routers.DefaultRouter()
 router.register(r"course", CourseViewSet, basename="course")
-router.register(r"payment", PaymentViewSet, basename="payment")
 
 # URL-ы для APIView
 urlpatterns = [

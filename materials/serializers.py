@@ -1,7 +1,5 @@
 from rest_framework import serializers
 
-from users.models import Payment
-from users.serializers import UserSerializer
 from .models import Course, Lesson
 
 
@@ -31,19 +29,3 @@ class CourseSerializer(serializers.ModelSerializer):
 
         model = Course
         fields = "__all__"
-
-
-class PaymentSerializer(serializers.ModelSerializer):
-    """Сериализатор для модели Платеж."""
-
-    user = UserSerializer(read_only=True)  # Вложенный сериализатор пользователя
-    course = CourseSerializer(read_only=True)  # Вложенный сериализатор курса
-    lesson = LessonSerializer(read_only=True)  # Вложенный сериализатор урока
-    payment_method = serializers.ChoiceField(
-        choices=Payment.PAYMENT_METHODS
-    )  # Вывод доступных методов оплаты
-
-    class Meta:
-        model = Payment
-        fields = "__all__"
-        # fields = ["id", "user", "date", "course", "lesson", "amount", "payment_method"]

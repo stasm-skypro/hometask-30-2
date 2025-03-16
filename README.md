@@ -47,3 +47,15 @@
 
 5. Сортировка по дате (по убыванию)
 ![sort_by_date](/media/readme/sort_by_date2.png)
+
+6. Сортировка по дате и фильтрация по способу оплаты
+![sort_by_date_and_filter_by_cash](/media/readme/sort_by_date_and_filter_by_cash.png)
+
+7. Сортировка по дате, фильтрация по способу оплаты и поиск по имени пользователя
+![sort_by_date_and_filter_by_cash_and_search_by_user](/media/readme/sort_by_date_and_filter_by_cash_and_search_by_user.png)
+
+8. Сортировка по дате, фильтрация по способу оплаты и поиск по названию урока
+![sort_by_date_and_filter_by_cash_and_search_by_lesson](/media/readme/sort_by_date_and_filter_by_cash_and_search_by_lesson.png)
+
+9. Сортировка по дате и поиск по названию курса
+![sort_by_date_and_search_by_course](/media/readme/sort_by_date_and_search_by_course.png)

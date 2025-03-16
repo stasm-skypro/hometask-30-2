@@ -6,5 +6,6 @@ app_name = UsersConfig.name
 
 routers = routers.DefaultRouter()
 routers.register(r"user", UserViewSet, basename="user")
+routers.register(r"payment", UserViewSet, basename="payment")
 
 urlpatterns = routers.urls
