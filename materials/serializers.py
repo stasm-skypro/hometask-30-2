@@ -15,15 +15,15 @@ class LessonSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Курс."""
 
+    lessons_count = serializers.SerializerMethodField()  # Количество уроков
+    lessons = LessonSerializer(many=True, read_only=True)  # Уроки
+
+    @staticmethod
+    def get_lessons_count(obj):
+        return obj.lessons.count()
+
     class Meta:
         """Мета класс для сериализатора."""
 
-        lessons_count = serializers.SerializerMethodField()  # Количество уроков
-        lessons = LessonSerializer(many=True, read_only=True)  # Уроки
-
-        @staticmethod
-        def get_lessons_count(obj):
-            return obj.lessons.count()
-
         model = Course
-        fields = "__all__"
+        fields = ["name", "description", "lessons", "lessons_count"]
