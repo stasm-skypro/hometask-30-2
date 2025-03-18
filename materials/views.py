@@ -17,7 +17,6 @@ class CourseViewSet(viewsets.ModelViewSet):
         if self.action == "retrieve":
             return CourseDetailSerializer
         return CourseSerializer
-    # serializer_class = CourseSerializer
 
 
     def create(self, request, *args, **kwargs):
