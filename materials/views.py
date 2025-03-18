@@ -1,6 +1,6 @@
 from rest_framework import viewsets, generics
 from .models import Course, Lesson
-from .serializers import CourseSerializer, LessonSerializer
+from .serializers import CourseSerializer, LessonSerializer, CourseDetailSerializer
 import logging
 
 
@@ -12,7 +12,13 @@ class CourseViewSet(viewsets.ModelViewSet):
     """API endpoint для CRUD-операций."""
 
     queryset = Course.objects.all().order_by("name")
-    serializer_class = CourseSerializer
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return CourseDetailSerializer
+        return CourseSerializer
+    # serializer_class = CourseSerializer
+
 
     def create(self, request, *args, **kwargs):
         """Переопределение метода для создания курса."""
