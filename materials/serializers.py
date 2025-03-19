@@ -37,11 +37,11 @@ class CourseDetailSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def get_lessons_count(obj):
-        "Получение количества уроков в курсе."
+        """Получение количества уроков в курсе."""
         return obj.lessons.count()
 
     class Meta:
         """Мета класс для сериализатора."""
 
         model = Course
-        fields = ["name", "description", "lessons", "lessons_count"]
+        fields = ["name", "description", "lessons_count", "lessons"]

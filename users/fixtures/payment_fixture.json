@@ -78,7 +78,7 @@
             "user": 4,
             "date": "2025-04-12T18:45:00Z",
             "course": null,
-            "lesson": 1,
+            "lesson": 2,
             "amount": "1499.99",
             "payment_method": "cash"
         }
@@ -90,7 +90,7 @@
             "user": 4,
             "date": "2025-05-12T18:45:00Z",
             "course": null,
-            "lesson": 1,
+            "lesson": 3,
             "amount": "1499.99",
             "payment_method": "cash"
         }
@@ -102,7 +102,7 @@
             "user": 2,
             "date": "2025-04-14T15:20:00Z",
             "course": null,
-            "lesson": 3,
+            "lesson": 5,
             "amount": "999.99",
             "payment_method": "cash"
         }
