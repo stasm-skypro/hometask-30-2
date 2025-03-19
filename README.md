@@ -63,6 +63,329 @@
             "video": "http://localhost:8000/media/lessons/python_vars.mp4",
             "course": 1
         }
-    ],
+    ]
 }
+```
+
+
+## 4. Настроена фильтрация для эндпоинта вывода списка платежей с возможностями
+
+* по дате оплаты,
+команда: ```http://localhost:8000/users/payment/?ordering=date``` выводит список оплат в порядке возрастания даты оплаты.
+
+```json
+ [
+        "id": 5,
+        "date": "2025-03-11T19:10:00+05:00",
+        "amount": "3999.99",
+        "payment_method": "transfer",
+        "user": 5,
+        "course": 3,
+        "lesson": null
+    },
+    {
+        "id": 4,
+        "date": "2025-03-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 1
+    },
+    {
+        "id": 3,
+        "date": "2025-03-13T14:00:00+05:00",
+        "amount": "6999.99",
+        "payment_method": "transfer",
+        "user": 3,
+        "course": 2,
+        "lesson": null
+    },
+    {
+        "id": 2,
+        "date": "2025-03-14T20:20:00+05:00",
+        "amount": "999.99",
+        "payment_method": "cash",
+        "user": 2,
+        "course": null,
+        "lesson": 3
+    },
+    {
+        "id": 1,
+        "date": "2025-03-15T15:30:00+05:00",
+        "amount": "4999.99",
+        "payment_method": "transfer",
+        "user": 1,
+        "course": 1,
+        "lesson": null
+    },
+    {
+        "id": 7,
+        "date": "2025-04-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 2
+    },
+    {
+        "id": 9,
+        "date": "2025-04-14T20:20:00+05:00",
+        "amount": "999.99",
+        "payment_method": "cash",
+        "user": 2,
+        "course": null,
+        "lesson": 5
+    },
+    {
+        "id": 6,
+        "date": "2025-04-15T15:30:00+05:00",
+        "amount": "4999.99",
+        "payment_method": "transfer",
+        "user": 1,
+        "course": 1,
+        "lesson": null
+    },
+    {
+        "id": 8,
+        "date": "2025-05-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 3
+    },
+    {
+        "id": 10,
+        "date": "2025-05-13T14:00:00+05:00",
+        "amount": "6999.99",
+        "payment_method": "transfer",
+        "user": 3,
+        "course": 2,
+        "lesson": null
+    }
+]
+```
+
+команда ```http://localhost:8000/users/payment/?ordering=-date``` выводит список оплат в порядке убывания даты оплаты.
+
+```json
+[
+        "id": 10,
+        "date": "2025-05-13T14:00:00+05:00",
+        "amount": "6999.99",
+        "payment_method": "transfer",
+        "user": 3,
+        "course": 2,
+        "lesson": null
+    },
+    {
+        "id": 8,
+        "date": "2025-05-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 3
+    },
+    {
+        "id": 6,
+        "date": "2025-04-15T15:30:00+05:00",
+        "amount": "4999.99",
+        "payment_method": "transfer",
+        "user": 1,
+        "course": 1,
+        "lesson": null
+    },
+    {
+        "id": 9,
+        "date": "2025-04-14T20:20:00+05:00",
+        "amount": "999.99",
+        "payment_method": "cash",
+        "user": 2,
+        "course": null,
+        "lesson": 5
+    },
+    {
+        "id": 7,
+        "date": "2025-04-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 2
+    },
+    {
+        "id": 1,
+        "date": "2025-03-15T15:30:00+05:00",
+        "amount": "4999.99",
+        "payment_method": "transfer",
+        "user": 1,
+        "course": 1,
+        "lesson": null
+    },
+    {
+        "id": 2,
+        "date": "2025-03-14T20:20:00+05:00",
+        "amount": "999.99",
+        "payment_method": "cash",
+        "user": 2,
+        "course": null,
+        "lesson": 3
+    },
+    {
+        "id": 3,
+        "date": "2025-03-13T14:00:00+05:00",
+        "amount": "6999.99",
+        "payment_method": "transfer",
+        "user": 3,
+        "course": 2,
+        "lesson": null
+    },
+    {
+        "id": 4,
+        "date": "2025-03-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 1
+    },
+    {
+        "id": 5,
+        "date": "2025-03-11T19:10:00+05:00",
+        "amount": "3999.99",
+        "payment_method": "transfer",
+        "user": 5,
+        "course": 3,
+        "lesson": null
+    }
+]
+```
+
+команда ```http://localhost:8000/users/payment/?course=1``` выводит список оплат за 1-й курс.
+
+```json
+[
+    {
+        "id": 1,
+        "date": "2025-03-15T15:30:00+05:00",
+        "amount": "4999.99",
+        "payment_method": "transfer",
+        "user": 1,
+        "course": 1,
+        "lesson": null
+    },
+    {
+        "id": 6,
+        "date": "2025-04-15T15:30:00+05:00",
+        "amount": "4999.99",
+        "payment_method": "transfer",
+        "user": 1,
+        "course": 1,
+        "lesson": null
+    }
+]
+```
+
+команда ```http://localhost:8000/users/payment/?lesson=1``` выводит список оплат за 1-й урок.
+
+```json
+[
+    {
+        "id": 4,
+        "date": "2025-03-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 1
+    }
+]
+```
+
+команда ```http://localhost:8000/users/payment/?payment_method=cash``` выводит список всех наличных оплат.
+```json
+[
+  {
+        "id": 2,
+        "date": "2025-03-14T20:20:00+05:00",
+        "amount": "999.99",
+        "payment_method": "cash",
+        "user": 2,
+        "course": null,
+        "lesson": 3
+    },
+    {
+        "id": 4,
+        "date": "2025-03-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 1
+    },
+    {
+        "id": 7,
+        "date": "2025-04-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 2
+    },
+    {
+        "id": 8,
+        "date": "2025-05-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 3
+    },
+    {
+        "id": 9,
+        "date": "2025-04-14T20:20:00+05:00",
+        "amount": "999.99",
+        "payment_method": "cash",
+        "user": 2,
+        "course": null,
+        "lesson": 5
+    }
+]
+```
+
+
+команда ```http://localhost:8000/users/payment/?user=4``` выводит список оплат за 4-го пользователя.
+
+```json
+[
+    {
+        "id": 4,
+        "date": "2025-03-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 1
+    },
+    {
+        "id": 7,
+        "date": "2025-04-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 2
+    },
+    {
+        "id": 8,
+        "date": "2025-05-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 3
+    }
+]
 ```
