@@ -6,6 +6,7 @@ class PaymentSerializer(serializers.ModelSerializer):
     """Сериализатор для модели Payment."""
 
     class Meta:
+        """Класс Мета для сериализатора вывода модели 'Payment'."""
         model = Payment
         fields = "__all__"
 
@@ -13,19 +14,24 @@ class PaymentSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     """Сериализатор для модели User."""
 
+    payments = PaymentSerializer(many=True, read_only=True).data
+
     class Meta:
+        """Класс Мета для сериализатора вывода модели 'User'."""
         model = User
         fields = [
-            "id", "username", "email", "first_name", "last_name", "is_staff", "is_active", "date_joined"
+            "id", "username", "email", "first_name", "last_name", "is_staff", "is_active", "date_joined", "payments",
         ]
 
-        # Дополнительно определяем поля, которые нельзя изменять
-        read_only_fields = [
-            "id", "is_staff", "is_active", "date_joined"
-        ]
 
-        # Дополнительные настройки для полей, которые позволяют, например, делать их обязательными, или только для чтения, или скрытыми
-        extra_kwargs = {
-            "username": {"required": False},
-            "email": {"required": True},
-        }
+class UserDetailSerializer(serializers.ModelSerializer):
+    """Сериализатор детализации для модели User."""
+
+    payments = PaymentSerializer(many=True, read_only=True)
+
+    class Meta:
+        """Класс Мета для сериализатора вывода детализации модели 'User'."""
+        model = User
+        fields = [
+            "id", "username", "email", "first_name", "last_name", "is_staff", "is_active", "date_joined", "payments"
+        ]

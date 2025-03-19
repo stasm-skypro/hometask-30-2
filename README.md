@@ -389,3 +389,186 @@
     }
 ]
 ```
+
+команда ```http://localhost:8000/users/payment/?search=pelageya@example.com``` выводит платежи пользователя с id=4.
+
+```json
+[
+   {
+        "id": 8,
+        "date": "2025-05-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 3
+    },
+    {
+        "id": 7,
+        "date": "2025-04-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 2
+    },
+    {
+        "id": 4,
+        "date": "2025-03-12T23:45:00+05:00",
+        "amount": "1499.99",
+        "payment_method": "cash",
+        "user": 4,
+        "course": null,
+        "lesson": 1
+    }
+]
+```
+
+команда ```http://localhost:8000/users/payment/?search=Python для начинающих``` выводит платежи за курс с названием 'Python для начинающих'.
+
+```json
+[
+    {
+        "id": 1,
+        "date": "2025-03-15T15:30:00+05:00",
+        "amount": "4999.99",
+        "payment_method": "transfer",
+        "user": 1,
+        "course": 1,
+        "lesson": null
+    },
+    {
+        "id": 6,
+        "date": "2025-04-15T15:30:00+05:00",
+        "amount": "4999.99",
+        "payment_method": "transfer",
+        "user": 1,
+        "course": 1,
+        "lesson": null
+    }
+]
+``` 
+
+## 5. Настроен вывод истории платежей для профиля пользователя
+
+Команда ```http://localhost:8000/users/user/``` выводит список пользователей и вложенную историю их платежей в виде списка id платежей.
+
+```json
+[
+   {
+        "id": 1,
+        "username": "stasm226",
+        "email": "stasm226@gmail.com",
+        "first_name": "Stanislav",
+        "last_name": "Mayatskiy",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2025-03-13T14:08:45.555726+05:00",
+        "payments": [
+            1,
+            6
+        ]
+    },
+    {
+        "id": 2,
+        "username": "andrewdevyatov",
+        "email": "andrew.devyatov@example.com",
+        "first_name": "Андрей",
+        "last_name": "Девятов",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-18T22:54:54.396177+05:00",
+        "payments": [
+            2,
+            9
+        ]
+    },
+    {
+        "id": 3,
+        "username": "sergeyshnuroff",
+        "email": "sergey.shnurov@example.com",
+        "first_name": "Сергей",
+        "last_name": "Шнуров",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-18T22:54:54.402002+05:00",
+        "payments": [
+            3,
+            10
+        ]
+    },
+    {
+        "id": 4,
+        "username": "pelageya",
+        "email": "pelageya@example.com",
+        "first_name": "Пелагея",
+        "last_name": "Телегина",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-18T22:54:54.402842+05:00",
+        "payments": [
+            4,
+            7,
+            8
+        ]
+    },
+    {
+        "id": 5,
+        "username": "nikolaystarikov",
+        "email": "nikolay.starikov@example.com",
+        "first_name": "Николай",
+        "last_name": "Стариков",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-03-18T22:54:54.403444+05:00",
+        "payments": [
+            5
+        ]
+    }
+]
+```
+
+команда ```http://localhost:8000/users/user/4/``` выводит детальную историю платежей пользователя с id=4.
+
+```json
+[
+    {
+    "id": 4,
+    "username": "pelageya",
+    "email": "pelageya@example.com",
+    "first_name": "Пелагея",
+    "last_name": "Телегина",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-03-18T22:54:54.402842+05:00",
+    "payments": [
+        {
+            "id": 4,
+            "date": "2025-03-12T23:45:00+05:00",
+            "amount": "1499.99",
+            "payment_method": "cash",
+            "user": 4,
+            "course": null,
+            "lesson": 1
+        },
+        {
+            "id": 7,
+            "date": "2025-04-12T23:45:00+05:00",
+            "amount": "1499.99",
+            "payment_method": "cash",
+            "user": 4,
+            "course": null,
+            "lesson": 2
+        },
+        {
+            "id": 8,
+            "date": "2025-05-12T23:45:00+05:00",
+            "amount": "1499.99",
+            "payment_method": "cash",
+            "user": 4,
+            "course": null,
+            "lesson": 3
+        }
+    ]
+]
+```

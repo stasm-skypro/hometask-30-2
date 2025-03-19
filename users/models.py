@@ -153,4 +153,4 @@ class Payment(models.Model):
 
     def __str__(self):
         """Метод для отображения объекта оплаты в админке."""
-        return f"{self.user.username} - {self.amount} руб."
+        return f"{self.user.email} - {self.amount} руб."
