@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, filters
 from .models import User, Payment
 from .serializers import UserSerializer, PaymentSerializer
 
@@ -15,3 +16,19 @@ class PaymentViewSet(viewsets.ModelViewSet):
 
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
+
+    # Фильтрация, поиск и сортировка
+    filter_backends = [
+        DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter,
+    ]
+
+    # Фильтрация по конкретным полям
+    filterset_fields = ["user", "course", "lesson", "payment_method"]
+
+    # Поля, по которым можно выполнять поиск (по частичному совпадению)
+    search_fields = ["user__email", "course__name", "lesson__title"]
+
+    # Поля, по которым можно сортировать (`ordering=-date` для сортировки по убыванию)
+    ordering_fields = ["date", "amount"]
