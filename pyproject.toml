@@ -1,7 +1,7 @@
 [project]
 name = "school"
 version = "0.1.0"
-description = "Hometask for Module 8 'Serializers'"
+description = "Home Task for Module 8 Chapter 30.1 Viewsets and Generics"
 authors = [
     {name = "Станислав Маяцкий",email = "stasm226@gmail.com"}
 ]
